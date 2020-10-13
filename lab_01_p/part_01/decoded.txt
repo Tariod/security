@@ -1,6 +1,9 @@
-Well, and now you see that it’s absolutely pointless to try to invent your own “crypto” with expectations that if someone doesn’t know the algorithm (even twice the base64, which is pretty stupid) it’s impossible for him to decipher. You’re reading this now in plain text so that argument clearly falls short.
+Well, and now you see that it’s absolutely pointless to try to invent your own “crypto” with expectations that if
+someone doesn’t know the algorithm (even twice the base64, which is pretty stupid) it’s impossible for him to decipher.
+You’re reading this now in plain text so that argument clearly falls short.
 
-Now to the actual tasks. All of them are graded based on the code you write, so no point in stealing deciphered text from your classmates.
+Now to the actual tasks. All of them are graded based on the code you write, so no point in stealing deciphered text
+from your classmates.
 1.
 Write a piece of software to attack a single-byte XOR cipher which is the same as Caesar but with xor op.
 
