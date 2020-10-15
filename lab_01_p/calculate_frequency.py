@@ -13,5 +13,6 @@ def calculate_frequency(ngrams):
     ngrams_len = len(ngrams)
     for ngram in ngrams_amount:
         ngrams_amount[ngram] /= ngrams_len
+        ngrams_amount[ngram] *= 100
 
     return ngrams_amount
