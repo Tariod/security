@@ -118,7 +118,15 @@ def main():
         population = natural_selection(population, calc_score)
         best, others = evolution(population)
 
-        best_keys.append(best[0].copy())
+        best_keys = sorted(best_keys + best, key=lambda k: k['score'], reverse=True)
+        temp = []
+        for index, key in enumerate(best_keys):
+            if len(temp) == 5:
+                break
+            if index == best_keys.index(key):
+                temp.append(key.copy())
+        best_keys = temp
+
         # Breeding
         parents = random.sample(others, len(others) // 2)
         random.shuffle(parents)
