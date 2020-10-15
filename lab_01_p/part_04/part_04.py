@@ -5,7 +5,7 @@ import pandas as pd
 import random
 import string
 
-from calculate_frequency import calculate_frequency
+from calculate_frequency import calculate_frequency_norm
 from ngrams import ngrams
 from substitution_cipher import substitution_cipher
 
@@ -43,7 +43,7 @@ def substitution_score(msg, alphabet, ngram_size):
     def substitution_score_bind(substitution):
         decoded_msg = substitution_cipher(msg, dict(zip(substitution['alphabet'], alphabet)))
         decoded_msg = ngrams(decoded_msg, ngram_size)
-        ngrams_frequency = calculate_frequency(decoded_msg)
+        ngrams_frequency = calculate_frequency_norm(decoded_msg)
 
         for ngram in ngrams_frequency:
             if substitution['score'] is None:
