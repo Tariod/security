@@ -12,8 +12,9 @@ class User {
   }
 
   static log(game, message, money, number, realNumber) {
+    console.log('='.repeat(20));
     console.log(
-      `Game: ${game.name}\n` +
+      `Game: ${game}\n` +
         `Message: ${message}\n` +
         `Money: ${money}\n` +
         `Guess: ${number} Real number: ${realNumber}`
@@ -40,11 +41,12 @@ class User {
       throw new Error('No game selected');
     }
 
-    let { value: number } = strategy.next(null);
+    let { value: number, done } = strategy.next(null);
     while (
-      // this._money < 1000000 &&
+      this._money < 1000000 &&
       this._deletionTime > new Date() &&
-      this._money > 0
+      this._money > 0 &&
+      !done
     ) {
       const result = await this._game.play(this._id, this._bet, number);
       const { message, money, realNumber } = result;
@@ -54,7 +56,7 @@ class User {
 
       User.log(this._game.name, message, money, number, realNumber);
 
-      number = strategy.next(realNumber).value;
+      ({ value: number, done } = strategy.next(realNumber));
     }
 
     return `Your balance ${this._money}`;

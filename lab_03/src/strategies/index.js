@@ -1,7 +1,7 @@
 const DefaultStrategy = require('./DefaultStrategy');
-const LSGStrategy = require('./lcg');
+const LCGStrategy = require('./lcg');
 
 module.exports = {
   DefaultStrategy,
-  LSGStrategy,
+  LCGStrategy,
 };
