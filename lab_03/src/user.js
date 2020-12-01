@@ -44,8 +44,8 @@ class User {
     let { value: number, done } = strategy.next(null);
     while (
       this._money < 1000000 &&
-      this._deletionTime > new Date() &&
       this._money > 0 &&
+      this._deletionTime > new Date() &&
       !done
     ) {
       const result = await this._game.play(this._id, this._bet, number);
@@ -58,6 +58,23 @@ class User {
 
       ({ value: number, done } = strategy.next(realNumber));
     }
+
+    return `Your balance ${this._money}`;
+  }
+
+  async spendMillion() {
+    if (this._game === null) {
+      throw new Error('No game selected');
+    }
+
+    const strategy = DefaultStrategy();
+    const { value: number } = strategy.next(null);
+    const result = await this._game.play(this._id, 1000000, number);
+    const { message, money, realNumber } = result;
+    this._money = money;
+    this._bet = User.getBetSize(number === realNumber, this._bet);
+
+    User.log(this._game.name, message, money, number, realNumber);
 
     return `Your balance ${this._money}`;
   }
