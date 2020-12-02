@@ -1,5 +1,9 @@
 const Game = require('./src/game');
-const { LCGStrategy, MTStrategy } = require('./src/strategies');
+const {
+  BetterMTStrategy,
+  LCGStrategy,
+  MTStrategy,
+} = require('./src/strategies');
 const User = require('./src/user');
 
 (async () => {
@@ -24,7 +28,16 @@ const User = require('./src/user');
     const mtResult = await user.win(mtStrategy);
     console.log(mtResult);
 
-    // const betterMT = new Game('BetterMt');
+    console.log('$'.repeat(40));
+    console.log('Spend million');
+    console.log(await user.spendMillion());
+    console.log('$'.repeat(40));
+
+    const betterMT = new Game('BetterMt');
+    user.game = betterMT;
+    const betterMTStrategy = BetterMTStrategy();
+    const betterMTResult = await user.win(betterMTStrategy);
+    console.log(betterMTResult);
   } catch (error) {
     console.error(error);
   }
