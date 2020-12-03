@@ -11,8 +11,7 @@ encoded = 'Yx`7cen7v7ergrvc~yp:|rn7OXE7t~g.re97R9p97~c7d.xb{s7cv|r7v7dce~yp75.r{
           '~d|~7rovz~yvc~xy;7dcvc~dc~tv{7crdcd7xe7`.vcrare7zrc.xs7nxb7qrr{7`xb{s7d.x`7c.r7urdc7erdb{c9 '
 
 KEY_RANGE = 256
-ALPHABET = list(string.ascii_letters + string.digits + string.punctuation + string.whitespace)
-ALPHABET = [tuple([ord(symbol)]) for symbol in ALPHABET]
+ALPHABET = [tuple([ord(symbol)]) for symbol in string.printable]
 
 with open('decoded.txt', 'w') as file:
     eng_frequency = pd.read_csv('../ngrams-frequency/letter_frequency.csv')

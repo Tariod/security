@@ -1,5 +1,9 @@
-import re
-
+from calculate_frequency import calculate_frequency_norm
+from index_of_coincidence import key_len
+from ngrams import ngrams
+import pandas as pd
+import string
+import sys
 from vigenere_cipher import vigenere_cipher
 
 encoded = '1c41023f564b2a130824570e6b47046b521f3f5208201318245e0e6b40022643072e13183e51183f5a1f3e4702245d4b285a1b2356' \
@@ -13,10 +17,39 @@ encoded = '1c41023f564b2a130824570e6b47046b521f3f5208201318245e0e6b40022643072e1
           '1f4b3f5b0e395689cbaa186b5d046b401b2a500e381d4b23471f3b4051641c0f2450186554042454072e1d08245e442f5c083e5e0e' \
           '2547442f1c5a0a64123c503e027e040c413428592406521a21420e184a2a32492072000228622e7f64467d512f0e7f0d1a'
 
-# TODO ANALYSE
-encoded_utf8 = bytes([int(symbol, base=16) for symbol in re.findall(r'.{2}', encoded)])
+encoded_utf8 = bytes.fromhex(encoded)
 
-ALPHABET_SIZE = 256
-KEY = 'K3k'
+SYMBOLS = string.ascii_letters + string.digits + string.punctuation + string.whitespace
+ALPHABET = [tuple([ord(symbol)]) for symbol in SYMBOLS] + [(128,), (153,), (226,)]
+
+eng_frequency = pd.read_csv('../ngrams-frequency/letter_frequency.csv')
+eng_frequency['ngram'] = eng_frequency['ngram'].map(lambda ng: tuple([s for s in ng]))
+eng_frequency = eng_frequency.set_index('ngram')
+
+KEY_RANGE = 256
+KEY_LEN = key_len(encoded_utf8)
+KEY = []
+for i in range(KEY_LEN):
+    msg = encoded_utf8[i::KEY_LEN]
+
+    best_key = -1
+    best_score = sys.maxsize
+    for key in range(KEY_RANGE):
+        decoded_msg = vigenere_cipher(msg, chr(key).encode())
+        decoded_msg = ngrams(decoded_msg, 1)
+        ngrams_frequency = calculate_frequency_norm(decoded_msg)
+
+        score = 0
+        for ngram in ngrams_frequency:
+            if ngram not in ALPHABET:
+                score = sys.maxsize
+                break
+            else:
+                score += (ngrams_frequency[ngram] - eng_frequency.get(ngram, 0)) ** 2
+        score = score ** 0.5
+        best_score, best_key = (score, key) if score < best_score else (best_score, best_key)
+
+    KEY.append(best_key)
+
 with open('decoded.txt', 'w') as file:
-    file.write(f'Key {KEY}: {vigenere_cipher(encoded_utf8, KEY.encode())}\n')
+    file.write(f"Key {bytes(KEY).decode()}: {vigenere_cipher(encoded_utf8, bytes(KEY)).decode('windows-1252')}\n")
