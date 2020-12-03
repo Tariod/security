@@ -1,0 +1,44 @@
+Well, and now you see that it’s absolutely pointless to try to invent your own “crypto” with expectations that if
+someone doesn’t know the algorithm (even twice the base64, which is pretty stupid) it’s impossible for him to decipher.
+You’re reading this now in plain text so that argument clearly falls short.
+
+Now to the actual tasks. All of them are graded based on the code you write, so no point in stealing deciphered text
+from your classmates.
+1.
+Write a piece of software to attack a single-byte XOR cipher which is the same as Caesar but with xor op.
+
+2.
+Now try a repeating-key XOR cip9er. E.g. it s9ould take a string "9ello world" and, given t9e key is "key", xor t9e
+first letter "9" wit9 "k", t9en xor "e" wit9 "e", t9en "l" wit9 "y", and t9en xor next c9ar "l" wit9 "k" again, t9en
+"o" wit9 "e" and so on. You may use an index of coincidence, Hamming distance, Kasiski examination, statistical tests or
+w9atever met9od you feel would s9ow t9e best result.7
+
+3.
+Write a code to attack some simple substitution cipher. To reduce the complexity of this one we will use only uppercase
+letters, so the keyspace is only 26! To get this one right automatically you will probably need to use some sort of
+genetic algorithm (which worked the best last year), simulated annealing or gradient descent. Seriously, write it right
+now, you will need it to decipher the next one as well. Bear in mind, there\xe2\x80\x99s no spaces.
+https://docs.google.com/document/d/1AWywcUIMoGr_cjOMaqjqeSyAyzK93icQE4W-6bDELfQ'
+
+4.
+ADD THE ABILITY TO DO CIPHER ANY KIND OF POLYALPHABETIC SUBSTITUTION CIPHERS THE ONE USED IN THE CIPHER TEXTS HERE HAS
+TWENTY SIX INDEPENDENT RANDOMLY CHOSEN MONOALPHABETIC SUBSTITUTION PATTERNS FOR EACH LETTER FROM ENGLISH ALPHABET IT IS
+CLEAR THAT YOU CAN NO LONGER RELY ON THE SAME SIMPLE ROUTINE OF GUESSING THE KEY BY EXHAUSTIVE SEARCH WHICH YOU PROBABLY
+USED TO DO CIPHER THE PREVIOUS PARAGRAPH WILL THE INDEX OF COINCIDENCE STILL WORK AS A SUGGESTION YOU CAN TRY TO DIVIDE
+THE MESSAGE IN PARTS BY THE NUMBER OF CHARACTERS IN A KEY AND APPLY FREQUENCY ANALYSIS TO EACH OF THEM CAN YOU FIND A
+WAY TO USE HIGHER ORDER FREQUENCY STATISTICS WITH THIS TYPE OF CIPHER THE NEXT MAGICAL WORD WILL TAKE TO THE NEXT LAB
+ENJOY bit.ly/34DnWjW
+
+5.
+CONGRATULATIONS THIS WASNT QUITE AN EASY TASK AND ONLY A COUBLE OP LAST YEAR STUDENTS GOT TO THIS POINT NOW ALL THIS
+TEXT IS JUST GARBAGE TO LET YOU USE SOME FREQUENCY ANALYSIS WE SET SAIL ON THIS NEW SEA BECAUSE THERE IS NEW KNOWLEDGE
+TO BE GAINED AND NEW RIGHTS TO ME WON AND THEY BUST ME WON AND USED FOR THE PROGRESS OP ALL BEOPLE FOR SPACE SCIENCE
+LIKE NUCLEAR SCIENCE AND ALL TECHNOLOGY HAS NO CONSCIENCE OF ITS OWN WHETHER IT WILL BECOME A FORCE FOR GOOD OR
+ILL DEPENDS ON MAN AND ONLY IF THE UNITED STATES OCCUPIES A BOSITION OF PREEMINENCE CAN WE HELP DECIDE WHETHER THIS NEW
+OCEAN WILL BE A SEA OF PEACE OR A NEW TERRIFYING THEATER OP WAR I DO NOT SAY THE WE SHOULD OR WILL GO UNPROTECTED
+AGAINST THE HOSTILE MISUSE OF SPACE ANY MORE THAN WE GO UNPROTECTED AGAINST THE HOSTILE USE OP LAND OR SEA BUT I DO SAY
+THAT SBACE CAN BE EXPLORED AND MASTERED WITHOUT FEEDING THE FIRES OF WAR WITHOUT REBEATING THE MISTAKES THAT MAN HAS
+MADE IN EXTENDING HIS WRIT AROUND THIS GLOBE OF OURS WE CHOOSE TO GO TO THE MOON IN THIS DECADE AND DO THE OTHER THINGS
+NOT BECAUSE THEY ARE EASY FUT BECAUSE THEY ARE HARD MECAUSE THAT GOAL WILL SERVE TO ORGANIVE AND MEASURE THE FEST OF
+OUR ENERGIES AND SKILLS BECAUSE THAT CHALLENGE IS ONE THAT WE ARE WILLING TO ACCEPT ONE WE ARE UNWILLING TO POSTPONE AND
+ONE WHICH WE INTEND TO WIN AND THE OTHERS TOO OK AND NOW THE REAL DEAL bit.ly/3dhT38X

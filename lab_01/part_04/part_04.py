@@ -12,7 +12,7 @@ from substitution_cipher import substitution_cipher
 # ================ ALPHABET CONF ================
 ALPHABET = string.ascii_uppercase
 NGRAMS_SIZE = 3  # NGRAMS_SIZE > 1
-NGRAMS_STAT = {string.ascii_uppercase: [None, 'trigrams_frequency.csv']}
+NGRAMS_STAT = {string.ascii_uppercase: [None, '../ngrams-frequency/trigrams_frequency.csv']}
 # =================== GEN CONF ==================
 POPULATION_SIZE = 200
 NUMBER_OF_GENERATIONS = 600
@@ -41,7 +41,7 @@ def substitution_score(msg, alphabet, ngram_size):
     eng_frequency = parse_ngram_stats(alphabet, ngram_size)
 
     def substitution_score_bind(substitution):
-        decoded_msg = substitution_cipher(msg, dict(zip(substitution['alphabet'], alphabet)))
+        decoded_msg = substitution_cipher(msg, [dict(zip(substitution['alphabet'], alphabet))])
         decoded_msg = ngrams(decoded_msg, ngram_size)
         ngrams_frequency = calculate_frequency_norm(decoded_msg)
 
@@ -99,8 +99,8 @@ def mutation(population, mutation_probability):
     for ind in population:
         if random.random() < mutation_probability:
             ind['score'] = None
-            gen1 = random.randrange(0, len(ind))
-            gen2 = random.randrange(0, len(ind))
+            gen1 = random.randrange(0, len(ind['alphabet']))
+            gen2 = random.randrange(0, len(ind['alphabet']))
             ind['alphabet'][gen1], ind['alphabet'][gen2] = ind['alphabet'][gen2], ind['alphabet'][gen1]
         new_population.append(ind)
     return new_population
@@ -113,7 +113,11 @@ def main():
     # Initial population
     population = init_population(ALPHABET, POPULATION_SIZE)
     for gen in range(NUMBER_OF_GENERATIONS):
-        if gen % 100 == 0: print("Generation " + str(gen))
+        if (gen + 1) % 100 == 0:
+            print("Generation " + str(gen + 1))
+            if len(best_keys) > 0:
+                print("Best key: " + ''.join(best_keys[0]['alphabet']))
+                print("Score: " + str(best_keys[0]['score']))
         # Natural selection
         population = natural_selection(population, calc_score)
         best, others = evolution(population)
@@ -149,7 +153,7 @@ def main():
         print("Key:" + str(i + 1))
         print("Fitness: " + str(key['score']))
         print("Substitution: " + ''.join(key['alphabet']))
-        decoded_msg = substitution_cipher(encoded, dict(zip(key['alphabet'], ALPHABET)))
+        decoded_msg = substitution_cipher(encoded, [dict(zip(key['alphabet'], ALPHABET))])
         print("Decoded message: " + decoded_msg)
 
 
