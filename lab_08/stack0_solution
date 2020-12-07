@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaB" \
+  | /opt/protostar/bin/stack0

